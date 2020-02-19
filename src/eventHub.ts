@@ -7,8 +7,8 @@ class EventHub {
   }
 
   // 触发事件
-  emit(eventName) {
-    (this.cache[eventName] || []).forEach(fn => fn()) // 执行注册过的事件
+  emit(eventName, data?) {
+    (this.cache[eventName] || []).forEach(fn => fn(data)) // 执行注册过的事件
   }
 }
 

@@ -15,10 +15,11 @@ describe('eventHub', () => {
   it('能够 on 以及 emit', () => {
     const eventHub = new EventHub()
     let called = false
-    eventHub.on('xxx', () => {
+    eventHub.on('xxx', (data) => {
       called = true
       assert(called === true)
+      assert(data === 'hello')
     })
-    eventHub.emit('xxx')
+    eventHub.emit('xxx', 'hello')
   })
 })
