@@ -22,4 +22,18 @@ describe('eventHub', () => {
     })
     eventHub.emit('xxx', 'hello')
   })
+  it('能够不订阅事件', done => {
+    const eventHub = new EventHub()
+    let called = false
+    const fn = () => {
+      called = true
+    }
+    eventHub.on('xxx', fn)
+    eventHub.off('xxx', fn)
+    eventHub.emit('xxx')
+    setTimeout(() => {
+      assert(called === false)
+      done()
+    }, 100)
+  })
 })
